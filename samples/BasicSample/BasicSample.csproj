@@ -49,7 +49,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Kamsoft.Job\Kamsoft.Job.csproj">
+    <ProjectReference Include="..\..\src\Kamsoft.Job\Kamsoft.Job.csproj">
       <Project>{9090289b-eae6-4192-a939-c12e3e626ca5}</Project>
       <Name>Kamsoft.Job</Name>
     </ProjectReference>

@@ -11,9 +11,10 @@ namespace BasicSample
         static void Main(string[] args)
         {
             MyJob myJob = new MyJob();
-
             myJob.Start();
+
             Console.ReadKey();
+
             myJob.Stop();
 
             Console.ReadLine();
