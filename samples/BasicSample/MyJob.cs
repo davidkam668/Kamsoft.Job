@@ -16,9 +16,9 @@ namespace BasicSample
             var config = new JobConfig.Builder()
             .WithName("测试作业1")                                    //作业名称
             .WithExecuteAtStart(true)                                  //启动后执行一次
-            //.WithInterval(TimeSpan.FromSeconds(5))          //间隔时间
+            .WithInterval(TimeSpan.FromSeconds(5))          //间隔时间
             //.WithDailyTimes("00:10", "12:10")                   //每天指定时间
-            .WithSpecificTimes("2025/12/31 01:00")         //指定时间
+            //.WithSpecificTimes("2025/12/31 01:00")         //指定时间
             .Build();
 
             Initialize(config);
