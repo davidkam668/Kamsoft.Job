@@ -267,19 +267,6 @@ namespace Kamsoft.Job
                 }
             }
 
-            // 计算下次指定时间的执行时间
-            if (_sortedSpecificTimes.Length > 0)
-            {
-                var nextSpecificTime = _sortedSpecificTimes.FirstOrDefault(t => t > DateTime.Now);
-                if (nextSpecificTime != DateTime.MinValue)
-                {
-                    if (!nextTime.HasValue || nextSpecificTime < nextTime)
-                    {
-                        nextTime = nextSpecificTime;
-                    }
-                }
-            }
-
             // 计算下次每天指定时间的执行时间
             if (_sortedDailyTimes.Length > 0)
             {
@@ -305,6 +292,19 @@ namespace Kamsoft.Job
                         {
                             nextTime = nextTimeTomorrow;
                         }
+                    }
+                }
+            }
+
+            // 计算下次指定时间的执行时间
+            if (_sortedSpecificTimes.Length > 0)
+            {
+                var nextSpecificTime = _sortedSpecificTimes.FirstOrDefault(t => t > DateTime.Now);
+                if (nextSpecificTime != DateTime.MinValue)
+                {
+                    if (!nextTime.HasValue || nextSpecificTime < nextTime)
+                    {
+                        nextTime = nextSpecificTime;
                     }
                 }
             }

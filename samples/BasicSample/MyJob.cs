@@ -17,8 +17,8 @@ namespace BasicSample
                 .WithName("测试作业1")// 作业名称
                 .WithExecuteAtStart(true)// 启动后执行一次
                 .WithInterval(TimeSpan.FromSeconds(600))// 间隔时间
-                .WithDailyTimes("04:15", "12:10")// 每天指定时间
-                //.WithSpecificTimes("2025/12/31 01:00")// 指定时间点
+                .WithDailyTimes("04:15", "11:55")// 每天指定时间
+                .WithSpecificTimes("2025/08/07 11:54")// 指定时间点
                 .Build();
 
             Initialize(config);
