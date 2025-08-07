@@ -33,22 +33,24 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JobManager\IJobManager.cs" />
+    <Compile Include="JobManager\JobManager.cs" />
+    <Compile Include="Job\JobFactory.cs" />
     <Compile Include="Logging\ConsoleJobLogger.cs" />
-    <Compile Include="IJob.cs" />
+    <Compile Include="Job\IJob.cs" />
     <Compile Include="Logging\IJobLogger.cs" />
-    <Compile Include="JobConfig.cs" />
-    <Compile Include="JobStatus.cs" />
-    <Compile Include="JobBase.cs" />
+    <Compile Include="Job\JobConfig.cs" />
+    <Compile Include="Job\JobStatus.cs" />
+    <Compile Include="Job\JobBase.cs" />
     <Compile Include="Logging\NullLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

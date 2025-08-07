@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Kamsoft.Job
 {
     //public abstract class JobBase<T> : IDisposable, IJob where T : JobBase<T>, new()
-    public abstract class JobBase : IDisposable, IJob
+    public abstract class JobBase : IJob
     {
         #region Instance
 
@@ -157,6 +157,12 @@ namespace Kamsoft.Job
 
             // 状态标记为已停止
             Status = JobStatus.Stopped;
+
+            // 释放资源
+            _cts?.Cancel();
+            _cts?.Dispose();
+            _cts = null;
+            _runningTask = null;
         }
         #endregion
 
@@ -308,6 +314,7 @@ namespace Kamsoft.Job
         #endregion
 
         #region 释放资源 Dispose
+
         private bool disposed;
 
         protected virtual void Dispose(bool disposing)
@@ -319,6 +326,7 @@ namespace Kamsoft.Job
                 _cts?.Cancel();
                 _cts?.Dispose();
                 _cts = null;
+                _runningTask = null;
             }
 
             disposed = true;
@@ -330,6 +338,7 @@ namespace Kamsoft.Job
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
         #endregion
     }
 }

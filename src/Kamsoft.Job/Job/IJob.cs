@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Kamsoft.Job
 {
     #region 作业接口 IJob
-    public interface IJob
+    public interface IJob : IDisposable
     {
         string Name { get; }
         string StatusDesc { get; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kamsoft.Job;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,21 @@ namespace BasicSample
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             MyJob myJob = new MyJob();
-            myJob.Start();
+            JobManager  jobManager = new JobManager();
+            jobManager.Register(myJob);
+
+            //myJob.StartAsync();
+            await jobManager.StartAllAsync();
+            Console.WriteLine("作业已启动，按任意键停止...");
             Console.ReadKey();
-            myJob.Stop();
-            Console.ReadLine();
+
+            //myJob.StopAsync();
+            await jobManager.StopAllAsync();
+            Console.WriteLine("作业已停止，按任意键退出...");
+            Console.ReadKey();
 
         }
     }
