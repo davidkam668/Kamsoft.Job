@@ -37,7 +37,24 @@ namespace Kamsoft.Job
         public string Name { get; set; }
 
         #region 作业状态 Status
-        public JobStatus Status { get; private set; } = JobStatus.NotStarted;
+
+        //public JobStatus Status { get; private set; } = JobStatus.NotStarted;
+
+        private readonly object _statusLock = new object();
+        private JobStatus _status = JobStatus.NotStarted;
+        public JobStatus Status
+        {
+            get
+            {
+                lock (_statusLock)
+                    return _status;
+            }
+            private set
+            {
+                lock (_statusLock)
+                    _status = value;
+            }
+        }
         public string StatusDesc
         {
             get
@@ -137,6 +154,9 @@ namespace Kamsoft.Job
                 // 异步等待作业完成
                 await _runningTask;
             }
+
+            // 状态标记为已停止
+            Status = JobStatus.Stopped;
         }
         #endregion
 
@@ -218,31 +238,6 @@ namespace Kamsoft.Job
         protected abstract Task ExecuteAsync(CancellationToken token);
         #endregion
 
-        #region 释放资源 Dispose
-        private bool disposed;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed) return;
-
-            if (disposing)
-            {
-                _cts?.Cancel();
-                _cts?.Dispose();
-                _cts = null;
-            }
-
-            disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Stop(); // 确保作业停止
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        #endregion
-
         #region 初始化时间数据 InitializeTimes
         private void InitializeTimes()
         {
@@ -309,6 +304,31 @@ namespace Kamsoft.Job
             }
 
             return nextTime;
+        }
+        #endregion
+
+        #region 释放资源 Dispose
+        private bool disposed;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if (disposing)
+            {
+                _cts?.Cancel();
+                _cts?.Dispose();
+                _cts = null;
+            }
+
+            disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Stop(); // 确保作业停止
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
         #endregion
     }
