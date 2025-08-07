@@ -7,7 +7,6 @@ namespace Kamsoft.Job
 {
     //public abstract class JobBase<T> : IDisposable, IJob where T : JobBase<T>, new()
     public abstract class JobBase : IDisposable, IJob
-
     {
         #region Instance
 
