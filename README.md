@@ -45,13 +45,13 @@ namespace BasicSample
 
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             MyJob myJob = new MyJob();
-            myJob.Start();
+            myJob.StartAsync();
             Console.ReadKey();
-            myJob.Stop();
-            Console.ReadLine();
+            myJob.StopAsync();
+            Console.ReadKey();
 
         }
     }
