@@ -58,29 +58,6 @@ namespace BasicSample
 }
 ```
 
-## 🔧 注入自定义日志
-
-实现 `IJobLogger` 接口并传入 `Initialize` 方法：
-
-```csharp
-var job = new MyJob();
-job.SetLogger(new NLogJobLogger());  // NLogJobLogger 实现 IJobLogger
-```
-
-## 🧩 Job 配置示例
-
-```csharp
-// 创建配置
-var config = new JobConfig.Builder()
-	.WithName("我的作业")// 作业名称
-	.WithExecuteAtStart(true)// 启动后执行一次
-	.WithInterval(TimeSpan.FromSeconds(5))// 间隔时间
-	//.WithDailyTimes("04:15", "11:55")// 每天指定时间点
-	//.WithSpecificTimes("2025/08/07 11:54")// 指定时间
-	.Build();
-
-```
-
 ## 📄 License
 
 MIT
