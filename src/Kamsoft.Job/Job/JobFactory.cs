@@ -21,7 +21,7 @@ namespace Kamsoft.Job
         /// <summary>
         /// 简化构造配置（仅名称+间隔），必须传入日志器
         /// </summary>
-        public static T Create<T>(string name, TimeSpan interval, IJobLogger logger, bool executeAtStart = true)
+        public static T Create<T>(string name, TimeSpan interval, bool executeAtStart, IJobLogger logger)
             where T : JobBase, new()
         {
             var config = new JobConfig.Builder()
