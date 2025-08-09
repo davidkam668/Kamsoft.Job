@@ -4,7 +4,7 @@
 
 ## ✨ 特性
 
-- 支持多种调度方式：固定间隔、每天特定时间、指定时间点
+- 支持多种调度方式：间隔时间、每天时间点、指定日期时间
 - 支持任务取消和异常捕获
 - 解耦日志依赖（支持接入 NLog、Serilog 或自定义日志）
 - 支持使用单例或多实例任务方式
@@ -28,8 +28,8 @@ namespace BasicSample
                 .WithName("我的作业")// 作业名称
                 .WithExecuteAtStart(true)// 启动后执行一次
                 .WithInterval(TimeSpan.FromSeconds(5))// 间隔时间
-                //.WithDailyTimes("04:15", "11:55")// 每天指定时间点
-                //.WithSpecificTimes("2025/08/07 11:54")// 指定时间
+                //.WithDailyTimes("04:15", "11:55")// 每天时间点
+                //.WithSpecificTimes("2025/08/07 11:54")// 指定日期时间
                 .Build();
 				
             Initialize(config);

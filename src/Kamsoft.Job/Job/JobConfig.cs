@@ -86,7 +86,7 @@ namespace Kamsoft.Job
                     DateTime parsedDate;
                     if (!DateTime.TryParse(_specificTimes[i], out parsedDate))
                     {
-                        throw new Exception($"【{_name}】无效的指定时间格式: {_specificTimes[i]}");
+                        throw new Exception($"【{_name}】无效的指定日期时间格式: {_specificTimes[i]}");
                     }
                 }
 

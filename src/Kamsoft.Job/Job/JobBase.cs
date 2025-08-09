@@ -29,8 +29,8 @@ namespace Kamsoft.Job
         private CancellationTokenSource _cts;
         private Task _runningTask;
         private readonly object _startStopLock = new object();
-        private DateTime[] _sortedSpecificTimes; // 预排序的指定时间
-        private TimeSpan[] _sortedDailyTimes;   // 预排序的每天时间
+        private DateTime[] _sortedSpecificTimes; // 预排序的指定日期时间
+        private TimeSpan[] _sortedDailyTimes;   // 预排序的每天时间点
         protected IJobLogger Logger { get; private set; }
 
         protected JobConfig Config { get; private set; }
@@ -267,7 +267,7 @@ namespace Kamsoft.Job
                 }
             }
 
-            // 计算下次每天指定时间的执行时间
+            // 计算下次每天时间点的执行时间
             if (_sortedDailyTimes.Length > 0)
             {
                 var now = DateTime.Now;
@@ -296,7 +296,7 @@ namespace Kamsoft.Job
                 }
             }
 
-            // 计算下次指定时间的执行时间
+            // 计算下次指定日期时间的执行时间
             if (_sortedSpecificTimes.Length > 0)
             {
                 var nextSpecificTime = _sortedSpecificTimes.FirstOrDefault(t => t > DateTime.Now);
